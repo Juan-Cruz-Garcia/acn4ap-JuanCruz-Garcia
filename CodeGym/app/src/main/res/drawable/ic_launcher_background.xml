@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Fondo (Rectángulo) -->
+    <path
+        android:fillColor="@color/verde"
+        android:pathData="M0,0h200v200h-200z" />
+
+    <!-- Líneas diagonales -->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="@color/rojo"
+        android:pathData="M0,40L40,0M0,80L80,0M0,120L120,0M0,160L160,0M40,200L200,40M80,200L200,80M120,200L200,120M160,200L200,160" />
+</vector>

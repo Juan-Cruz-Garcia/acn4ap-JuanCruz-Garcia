@@ -1,0 +1,47 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Outer Gear -->
+    <path
+        android:fillColor="#3E64FF"
+        android:pathData="M50,15
+                         L58,20 L70,18 L78,28 L75,40
+                         L85,50 L75,60 L78,72 L70,82
+                         L58,80 L50,90 L42,80 L30,82
+                         L22,72 L25,60 L15,50 L25,40
+                         L22,28 L30,18 L42,20Z" />
+
+    <!-- body -->
+    <path
+        android:fillColor="@color/rojo"
+        android:pathData="ZM50,63a6,6 0 1,1 0,-32 16,16 0 0,1 0,32Z" />
+    <!-- head -->
+    <path
+        android:fillColor="@color/blanco"
+        android:pathData="M50,42a8,8 0 1,1 0,-16 8,8 0 0,1 0,16z" />
+    <!-- hands -->
+    <path
+        android:fillColor="@color/blanco"
+        android:pathData="M58,53a3,3 0 1,1 0,-6 3,3 0 0,1 0,6z" />
+    <path
+        android:fillColor="@color/blanco"
+        android:pathData="M42,53a3,3 0 1,1 0,-6 3,3 0 0,1 0,6z" />
+
+    <!-- weight: bar -->
+    <path
+        android:fillColor="@color/negro"
+        android:pathData="M30,50h40v8h-40z" />
+
+    <!-- weight: left -->
+    <path
+        android:fillColor="@color/negro"
+        android:pathData="M20,54a10,10 0 1,1 20,0a10,10 0 1,1 -20,0z" />
+
+    <!-- weight: right -->
+    <path
+        android:fillColor="@color/negro"
+        android:pathData="M60,54a10,10 0 1,1 20,0a10,10 0 1,1 -20,0z" />
+</vector>
