@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">CodeGym</string>
+
+    <!-- Descripción del logo -->
+    <string name="logo_description">Logo del gimnasio</string>
+
+    <!-- Texto para los campos de entrada -->
+    <string name="hint_email">Ingresa tu correo</string>
+    <string name="hint_password">Ingresa tu contraseña</string>
+    <string name="hint_confirm_password">Re-Ingrese tu contraseña</string>
+    <string name="hint_name">Ingresa tu nombre</string>
+
+    <!-- Textos para los botones -->
+    <string name="btn_login">Ingresar</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="btn_re_login">Ya tengo cuenta, Iniciar sesión</string>
+    <string name="btn_start">Iniciar</string>
+    <string name="btn_stop">Detener</string>
+
+
+    <!-- Textos para los checkbox -->
+    <string name="check_completed">Nivel Completado</string>
+
+
 </resources>
