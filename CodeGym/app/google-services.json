@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "353800243545",
-    "project_id": "codegym-9aa68",
-    "storage_bucket": "codegym-9aa68.firebasestorage.app"
+    "project_number": "1005786487782",
+    "project_id": "codegym-4b7b3",
+    "storage_bucket": "codegym-4b7b3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:353800243545:android:6bd60cea25bc5ba5312448",
+        "mobilesdk_app_id": "1:1005786487782:android:52b06310c28efafcfe9427",
         "android_client_info": {
           "package_name": "com.example.codegym"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAzVVCCCZ5k-AirO2iO0gKPfks_sIuqcRk"
+          "current_key": "AIzaSyDbd92C6QiHzjvCqTEkaklHxMwLcigaP7Q"
         }
       ],
       "services": {
