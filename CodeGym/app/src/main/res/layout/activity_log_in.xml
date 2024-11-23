@@ -69,8 +69,6 @@
         app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
     <!-- Botón para ingresar -->
-
-    <!-- Botón para registrar -->
     <Button
         android:id="@+id/loginButton"
         android:layout_width="0dp"
@@ -83,6 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
+    <!-- Botón para registrar -->
     <Button
         android:id="@+id/loginRegisterButton"
         android:layout_width="0dp"
@@ -95,29 +94,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
-    <Button
-        android:id="@+id/cargarEjercicioButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/verde"
-        android:text="Cargar Ejercicio"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegisterButton" />
-
-    <Button
-        android:id="@+id/mostrarEjerciciosButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/azul"
-        android:text="Mostrar Ejercicios"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cargarEjercicioButton" />
 
 
 
