@@ -4,8 +4,9 @@ import static android.content.ContentValues.TAG;
 
 import android.util.Log;
 
-import com.example.codegym.dao.listeners.OnItemReceivedListener;
-import com.example.codegym.dao.listeners.OnItemsReceivedListener;
+import com.example.codegym.dto.UsuarioDTO;
+import com.example.codegym.listeners.OnItemReceivedListener;
+import com.example.codegym.listeners.OnItemsReceivedListener;
 import com.example.codegym.dto.EjercicioDTO;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -21,29 +22,29 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
     }
 
     @Override
-    public void crear(EjercicioDTO Ejercicio) {
+    public void crear(EjercicioDTO Ejercicio, OnItemReceivedListener<Void> listener) {
         db.collection("Ejercicios")
-                .document(Ejercicio.getId())
+                .document()
                 .set(Ejercicio)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio creado exitosamente con ID: " + Ejercicio.getId()))
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio creado exitosamente"))
                 .addOnFailureListener(e -> Log.w(TAG, "Error al crear el Ejercicio", e));
     }
 
     @Override
     public void actualizar(EjercicioDTO Ejercicio) {
         db.collection("Ejercicios")
-                .document(Ejercicio.getId())
+                .document()
                 .set(Ejercicio, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio actualizado exitosamente con ID: " + Ejercicio.getId()))
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio actualizado exitosamente"))
                 .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar el Ejercicio", e));
     }
 
     @Override
     public void eliminar(EjercicioDTO Ejercicio) {
         db.collection("Ejercicios")
-                .document(Ejercicio.getId())
+                .document()
                 .delete()
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio eliminado exitosamente con ID: " + Ejercicio.getId()))
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio eliminado exitosamente"))
                 .addOnFailureListener(e -> Log.w(TAG, "Error al eliminar el Ejercicio", e));
     }
 
@@ -56,9 +57,9 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
                     if (documentSnapshot.exists()) {
                         EjercicioDTO Ejercicio = documentSnapshot.toObject(EjercicioDTO.class);
                         listener.onItemReceived(Ejercicio);
-                        Log.d(TAG, "Ejercicio obtenido exitosamente con ID: " + id);
+                        Log.d(TAG, "Ejercicio obtenido exitosamente ");
                     } else {
-                        Log.w(TAG, "No se encontró el Ejercicio con ID: " + id);
+                        Log.w(TAG, "No se encontró el Ejercicio");
                         listener.onItemReceived(null);
                     }
                 })

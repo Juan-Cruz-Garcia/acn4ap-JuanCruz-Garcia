@@ -1,11 +1,12 @@
 package com.example.codegym.dao;
 
-import static android.content.ContentValues.TAG;
 
 import android.util.Log;
 
-import com.example.codegym.dao.listeners.OnItemReceivedListener;
-import com.example.codegym.dao.listeners.OnItemsReceivedListener;
+import com.example.codegym.listeners.OnItemReceivedListener;
+import com.example.codegym.listeners.OnItemsReceivedListener;
+import com.example.codegym.listeners.OnLoginListener;
+import com.example.codegym.listeners.OnMailVerificationListener;
 import com.example.codegym.dto.UsuarioDTO;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -19,31 +20,39 @@ public class FirebaseUsuarioDAO implements BaseDAO<UsuarioDTO> {
     public FirebaseUsuarioDAO() {
         db = FirebaseFirestore.getInstance();
     }
+
     @Override
-    public void crear(UsuarioDTO usuario) {
+    public void crear(UsuarioDTO usuario, OnItemReceivedListener<Void> listener) {
+        Log.d("FirebaseUsuarioDAO", "Iniciando creación de usuario: " + usuario.toString());
         db.collection("usuarios")
-                .document(usuario.getId())
+                .document()
                 .set(usuario)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Usuario creado exitosamente con ID: " + usuario.getId()))
-                .addOnFailureListener(e -> Log.w(TAG, "Error al crear el usuario", e));
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("FirebaseUsuarioDao", "Usuario creado");
+                    listener.onItemReceived(null);
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("FirebaseUsuarioDao", "Error al crear el usuario", e);
+                    listener.onError(e);
+                });
     }
 
     @Override
     public void actualizar(UsuarioDTO usuario) {
         db.collection("usuarios")
-                .document(usuario.getId())
+                .document()
                 .set(usuario, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Usuario actualizado exitosamente con ID: " + usuario.getId()))
-                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar el usuario", e));
+                .addOnSuccessListener(aVoid -> Log.d("FirebaseUsuarioDao", "Usuario actualizado exitosamente"))
+                .addOnFailureListener(e -> Log.w("FirebaseUsuarioDao", "Error al actualizar el usuario", e));
     }
 
     @Override
     public void eliminar(UsuarioDTO usuario) {
         db.collection("usuarios")
-                .document(usuario.getId())
+                .document()
                 .delete()
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Usuario eliminado exitosamente con ID: " + usuario.getId()))
-                .addOnFailureListener(e -> Log.w(TAG, "Error al eliminar el usuario", e));
+                .addOnSuccessListener(aVoid -> Log.d("FirebaseUsuarioDao", "Usuario eliminado exitosamente"))
+                .addOnFailureListener(e -> Log.w("FirebaseUsuarioDao", "Error al eliminar el usuario", e));
     }
 
     @Override
@@ -55,14 +64,14 @@ public class FirebaseUsuarioDAO implements BaseDAO<UsuarioDTO> {
                     if (documentSnapshot.exists()) {
                         UsuarioDTO usuario = documentSnapshot.toObject(UsuarioDTO.class);
                         listener.onItemReceived(usuario);
-                        Log.d(TAG, "Usuario obtenido exitosamente con ID: " + id);
+                        Log.d("FirebaseUsuarioDao", "Usuario obtenido exitosamente con ID: " + id);
                     } else {
-                        Log.w(TAG, "No se encontró el usuario con ID: " + id);
+                        Log.w("FirebaseUsuarioDao", "No se encontró el usuario con ID: " + id);
                         listener.onItemReceived(null);
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.w(TAG, "Error al obtener el usuario", e);
+                    Log.w("FirebaseUsuarioDao", "Error al obtener el usuario", e);
                     listener.onItemReceived(null);
                 });
     }
@@ -74,11 +83,46 @@ public class FirebaseUsuarioDAO implements BaseDAO<UsuarioDTO> {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<UsuarioDTO> usuarios = queryDocumentSnapshots.toObjects(UsuarioDTO.class);
                     listener.onItemsReceived(usuarios);
-                    Log.d(TAG, "Usuarios obtenidos exitosamente");
+                    Log.d("FirebaseUsuarioDao", "Usuarios obtenidos exitosamente");
                 })
                 .addOnFailureListener(e -> {
-                    Log.w(TAG, "Error al obtener los usuarios", e);
+                    Log.w("FirebaseUsuarioDao", "Error al obtener los usuarios", e);
                     listener.onItemsReceived(new ArrayList<>()); // Retornamos una lista vacía en caso de error
+                });
+    }
+
+    public void verificarMail(String mail, OnMailVerificationListener listener) {
+        db.collection("usuarios")
+                .whereEqualTo("correo", mail)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult() != null && task.getResult().isEmpty()) {
+                            listener.onMailAvailable();
+                        } else {
+                            listener.onMailAlreadyRegistered();
+                        }
+                    } else {
+                        listener.onError(task.getException());
+                    }
+                });
+    }
+
+    public void iniciarSesion(String email, String password, OnLoginListener Listener) {
+        db.collection("usuarios")
+                .whereEqualTo("correo", email)
+                .whereEqualTo("contrasenia", password)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        Listener.onLoginSuccess();
+                    } else {
+                        Listener.onLoginError(new Exception("Credenciales incorrectas"));
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("FirebaseUsuarioDAO", "Error al iniciar sesión: " + e.getMessage(), e);
+                    Listener.onLoginError(e);
                 });
     }
 }
