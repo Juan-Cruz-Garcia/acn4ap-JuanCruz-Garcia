@@ -1,4 +1,4 @@
-package com.example.codegym.dao.listeners;
+package com.example.codegym.listeners;
 
 public interface OnItemReceivedListener<T> {
     void onItemReceived(T item);

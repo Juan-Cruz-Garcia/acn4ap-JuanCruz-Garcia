@@ -2,23 +2,23 @@ package com.example.codegym;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.codegym.dao.FirebaseEjercicioDAO;
-import com.example.codegym.dao.listeners.OnItemsReceivedListener;
-import com.example.codegym.dto.EjercicioDTO;
-
-import java.util.Arrays;
-import java.util.List;
+import com.example.codegym.dao.FirebaseUsuarioDAO;
+import com.example.codegym.helper.PasswordHasher;
+import com.example.codegym.listeners.OnLoginListener;
 
 
 public class LogInActivity extends AppCompatActivity {
-    private static final String TAG = "logInActivity";
-    private FirebaseEjercicioDAO ejercicioDAO;
+    private FirebaseUsuarioDAO usuarioDAO;
+    private Button loginButton, loginRegisterButton;
+    private EditText loginEmail, loginPassword;
 
 
     @Override
@@ -26,53 +26,51 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        ejercicioDAO = new FirebaseEjercicioDAO();
+        usuarioDAO = new FirebaseUsuarioDAO();
+        loginButton=findViewById(R.id.loginButton);
+        loginRegisterButton=findViewById(R.id.loginRegisterButton);
+        loginEmail=findViewById(R.id.loginEmail);
+        loginPassword=findViewById(R.id.loginPassword);
 
-        Button cargarEjercicioButton = findViewById(R.id.cargarEjercicioButton);
-        Button mostrarEjerciciosButton = findViewById(R.id.mostrarEjerciciosButton);
+        loginRegisterButton.setOnClickListener(View ->{
+            Intent intent = new Intent(LogInActivity.this,SignUpActivity.class);
+            startActivity(intent);
+        });
 
-        cargarEjercicioButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(view -> {
+            iniciarSesion();
+        });
+
+    }
+
+    private void iniciarSesion() {
+        String email = loginEmail.getText().toString().trim();
+        String password = loginPassword.getText().toString().trim();
+        String hashedPassword = PasswordHasher.hashPassword(password);
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Log.d("LogInActivity", "Fallo: Uno o más campos están vacíos.");
+            Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        usuarioDAO.iniciarSesion(email, hashedPassword, new OnLoginListener() {
             @Override
-            public void onClick(View v) {
-                cargarEjercicio();
+            public void onLoginSuccess() {
+                Log.d("LogInActivity", "Inicio de sesión exitoso.");
+                Toast.makeText(LogInActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                // Redirigir a la actividad principal
+                startActivity(new Intent(LogInActivity.this, WelcomeActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onLoginError(Exception e) {
+                Log.e("LogInActivity", "Error al iniciar sesión: " + e.getMessage(), e);
+                Toast.makeText(LogInActivity.this, "Error al iniciar sesión: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        mostrarEjerciciosButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarEjercicios();
-            }
-        });
     }
-
-    private void cargarEjercicio() {
-        EjercicioDTO nuevoEjercicio = new EjercicioDTO("1", "Flexiones", Arrays.asList("Pecho", "Tríceps"));
-        ejercicioDAO.crear(nuevoEjercicio);
-        Toast.makeText(this, "Ejercicio cargado", Toast.LENGTH_SHORT).show();
-    }
-
-    private void mostrarEjercicios() {
-        ejercicioDAO.obtenerTodo(new OnItemsReceivedListener<EjercicioDTO>() {
-            @Override
-            public void onItemsReceived(List<EjercicioDTO> ejercicios) {
-                if (ejercicios.isEmpty()) {
-                    Toast.makeText(LogInActivity.this, "No hay ejercicios disponibles", Toast.LENGTH_SHORT).show();
-                } else {
-                    for (EjercicioDTO ejercicio : ejercicios) {
-                        Log.d("Ejercicio", ejercicio.toString());
-                    }
-                    Toast.makeText(LogInActivity.this, "Ejercicios mostrados en log", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Log.e(TAG, "Error al obtener los ejercicios", e);
-                Toast.makeText(LogInActivity.this, "Error al obtener ejercicios", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
 }

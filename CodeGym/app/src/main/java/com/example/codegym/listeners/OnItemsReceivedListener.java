@@ -1,4 +1,4 @@
-package com.example.codegym.dao.listeners;
+package com.example.codegym.listeners;
 
 import java.util.List;
 
