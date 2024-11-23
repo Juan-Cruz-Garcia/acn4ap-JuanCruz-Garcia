@@ -10,7 +10,7 @@
 
     <!-- Mensaje de bienvenida -->
     <TextView
-        android:id="@+id/welcomeTextView"
+        android:id="@+id/bienvenidaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -25,16 +25,16 @@
     <!-- Lista de ejercicios -->
 
     <include
-        android:id="@+id/include"
+        android:id="@+id/includeTimer"
         layout="@layout/activity_timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
+        app:layout_constraintTop_toBottomOf="@+id/bienvenidaTextView"
         tools:layout_editor_absoluteX="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/exercisesRecyclerView"
+        android:id="@+id/ejerciciosRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/gris"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@+id/includeTimer"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/activity_item" />
 

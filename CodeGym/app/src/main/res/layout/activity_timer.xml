@@ -8,11 +8,6 @@
     android:padding="16dp">
 
     <!-- Temporizador -->
-
-    <!-- Botón de reinicio -->
-
-    <!-- Botón de iniciar -->
-
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="249dp"
@@ -25,7 +20,7 @@
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <!-- Botón de reinicio -->
     <ImageButton
         android:id="@+id/resetButton"
         android:layout_width="40dp"
@@ -37,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="@+id/timerTextView"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <!-- Botón de iniciar -->
     <Button
         android:id="@+id/startButton"
         android:layout_width="0dp"

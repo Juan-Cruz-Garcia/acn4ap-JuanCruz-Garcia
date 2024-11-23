@@ -10,7 +10,7 @@
 
     <!-- Nombre del ejercicio -->
     <TextView
-        android:id="@+id/exerciseNameTextView"
+        android:id="@+id/nombreEjercicioTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ejercicio"
@@ -25,26 +25,25 @@
     <!-- Casilla para marcar como completado -->
 
     <EditText
-        android:id="@+id/inputDataEditText"
+        android:id="@+id/ingresoPesoEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:hint="cambiar"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreEjercicioTextView" />
+
 
     <CheckBox
-        android:id="@+id/completedCheckBox"
+        android:id="@+id/completadoCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/check_completed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputDataEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/ingresoPesoEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
