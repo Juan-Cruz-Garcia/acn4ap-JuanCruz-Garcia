@@ -23,7 +23,7 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
 
     @Override
     public void crear(EjercicioDTO Ejercicio, OnItemReceivedListener<Void> listener) {
-        db.collection("Ejercicios")
+        db.collection("ejercicios")
                 .document()
                 .set(Ejercicio)
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio creado exitosamente"))
@@ -32,7 +32,7 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
 
     @Override
     public void actualizar(EjercicioDTO Ejercicio) {
-        db.collection("Ejercicios")
+        db.collection("ejercicios")
                 .document()
                 .set(Ejercicio, SetOptions.merge())
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio actualizado exitosamente"))
@@ -41,7 +41,7 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
 
     @Override
     public void eliminar(EjercicioDTO Ejercicio) {
-        db.collection("Ejercicios")
+        db.collection("ejercicios")
                 .document()
                 .delete()
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio eliminado exitosamente"))
@@ -50,7 +50,7 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
 
     @Override
     public void obtener(String id, OnItemReceivedListener<EjercicioDTO> listener) {
-        db.collection("Ejercicios")
+        db.collection("ejercicios")
                 .document(id)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -71,12 +71,14 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
 
     @Override
     public void obtenerTodo(OnItemsReceivedListener<EjercicioDTO> listener) {
-        db.collection("Ejercicios")
+        db.collection("ejercicios")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<EjercicioDTO> ejercicios = queryDocumentSnapshots.toObjects(EjercicioDTO.class);
                     listener.onItemsReceived(ejercicios);
                     Log.d(TAG, "Ejercicios obtenidos exitosamente");
+                    Log.d("FirebaseUsuarioDAO", "ejercicios recuperados: " + ejercicios.toString());
+
                 })
                 .addOnFailureListener(e -> {
                     Log.w(TAG, "Error al obtener los Ejercicios", e);
