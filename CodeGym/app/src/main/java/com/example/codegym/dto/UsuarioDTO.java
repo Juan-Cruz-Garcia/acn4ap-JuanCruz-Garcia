@@ -1,18 +1,29 @@
 package com.example.codegym.dto;
 
 public class UsuarioDTO {
+    private String id;
     private String correo;
     private String contrasenia;
     private boolean esAdmin;
     private String nombre;
 
-    public UsuarioDTO() {}
+    public UsuarioDTO() {
+    }
 
-    public UsuarioDTO(String correo, String contraseña, boolean esAdmin, String nombre) {
+    public UsuarioDTO(String id, String correo, String contrasenia, String nombre, boolean esAdmin) {
+        this.id = id;
         this.correo = correo;
-        this.contrasenia = contraseña;
+        this.contrasenia = contrasenia;
         this.esAdmin = esAdmin;
         this.nombre = nombre;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCorreo() {
@@ -23,12 +34,12 @@ public class UsuarioDTO {
         this.correo = correo;
     }
 
-    public String getContraseña() {
+    public String getContrasenia() {
         return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contrasenia = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public boolean isEsAdmin() {
@@ -50,7 +61,8 @@ public class UsuarioDTO {
     @Override
     public String toString() {
         return "UsuarioDTO{" +
-                "correo='" + correo + '\'' +
+                "id='" + id + '\'' +
+                ", correo='" + correo + '\'' +
                 ", contrasenia='" + contrasenia + '\'' +
                 ", esAdmin=" + esAdmin +
                 ", nombre='" + nombre + '\'' +

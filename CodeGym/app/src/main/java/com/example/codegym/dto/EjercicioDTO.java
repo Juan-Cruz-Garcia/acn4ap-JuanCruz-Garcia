@@ -3,20 +3,30 @@ package com.example.codegym.dto;
 import java.util.List;
 
 public class EjercicioDTO {
-
+    private String id;
     private String nombre;
     private List<String> grupoMuscular;
 
     // Constructor vacío requerido por Firestore
-    public EjercicioDTO() {}
+    public EjercicioDTO() {
+    }
 
-    public EjercicioDTO(String nombre, List<String> grupoMuscular) {
+    public EjercicioDTO(String id, String nombre, List<String> grupoMuscular) {
+        this.id = id;
         this.nombre = nombre;
         this.grupoMuscular = grupoMuscular;
     }
 
-    // Getters y setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNombre() {
+
         return nombre;
     }
 
@@ -35,7 +45,8 @@ public class EjercicioDTO {
     @Override
     public String toString() {
         return "EjercicioDTO{" +
-                "nombre='" + nombre + '\'' +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", grupoMuscular=" + grupoMuscular +
                 '}';
     }
