@@ -56,11 +56,17 @@ public class LogInActivity extends AppCompatActivity {
 
         usuarioDAO.iniciarSesion(email, hashedPassword, new OnLoginListener() {
             @Override
-            public void onLoginSuccess() {
+            public void onLoginSuccess(boolean esAdmin) {
                 Log.d("LogInActivity", "Inicio de sesión exitoso.");
                 Toast.makeText(LogInActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
-                // Redirigir a la actividad principal
-                startActivity(new Intent(LogInActivity.this, WelcomeActivity.class));
+
+                Intent intent;
+                if (esAdmin) {
+                    intent = new Intent(LogInActivity.this, CrudEjercicosActivity.class);
+                } else {
+                    intent = new Intent(LogInActivity.this, WelcomeActivity.class);
+                }
+                startActivity(intent);
                 finish();
             }
 
@@ -70,7 +76,5 @@ public class LogInActivity extends AppCompatActivity {
                 Toast.makeText(LogInActivity.this, "Error al iniciar sesión: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
 }

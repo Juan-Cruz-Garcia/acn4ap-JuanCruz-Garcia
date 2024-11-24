@@ -16,7 +16,7 @@
     <!-- RecyclerView para mostrar los ejercicios -->
 
     <TextView
-        android:id="@+id/coachNameTextView"
+        android:id="@+id/entrenadorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -30,28 +30,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/muscleFilterSpinner"
+        android:id="@+id/filtroMusculosSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coachNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/entrenadorTextView" />
 
     <Button
-        android:id="@+id/addExerciseButton"
+        android:id="@+id/agregarEjercicioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Añadir Ejercicio"
         android:backgroundTint="@color/azul"
-        app:layout_constraintEnd_toStartOf="@+id/muscleFilterSpinner"
+        app:layout_constraintEnd_toStartOf="@+id/filtroMusculosSpinner"
         app:layout_constraintHorizontal_bias="0.015"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coachNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/entrenadorTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/exercisesRecyclerView"
+        android:id="@+id/ejercicioRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/gris"
@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addExerciseButton"
+        app:layout_constraintTop_toBottomOf="@+id/agregarEjercicioButton"
         tools:listitem="@layout/activity_crud_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
