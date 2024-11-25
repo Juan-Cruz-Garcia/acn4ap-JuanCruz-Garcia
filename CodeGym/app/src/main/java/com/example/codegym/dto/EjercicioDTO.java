@@ -1,8 +1,9 @@
 package com.example.codegym.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class EjercicioDTO {
+public class EjercicioDTO implements Serializable {
     private String nombre;
     private List<String> grupoMuscular;
     private String tipo;
