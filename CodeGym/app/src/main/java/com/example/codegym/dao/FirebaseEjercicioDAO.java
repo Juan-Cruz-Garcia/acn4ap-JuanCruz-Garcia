@@ -9,6 +9,8 @@ import com.example.codegym.listeners.OnItemReceivedListener;
 import com.example.codegym.listeners.OnItemsReceivedListener;
 import com.example.codegym.dto.EjercicioDTO;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
@@ -22,13 +24,39 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
     }
 
     @Override
-    public void crear(EjercicioDTO Ejercicio, OnItemReceivedListener<Void> listener) {
+    public void crear(EjercicioDTO ejercicio, OnItemReceivedListener<Void> listener) {
         db.collection("ejercicios")
-                .document()
-                .set(Ejercicio)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio creado exitosamente"))
-                .addOnFailureListener(e -> Log.w(TAG, "Error al crear el Ejercicio", e));
+                .document(ejercicio.getNombre())
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Si el documento ya existe, notificar al listener con un mensaje descriptivo
+                        if (listener != null) {
+                            listener.onError(new Exception("El ejercicio ya existe."));
+                        }
+                    } else {
+                        db.collection("ejercicios")
+                                .document(ejercicio.getNombre())
+                                .set(ejercicio)
+                                .addOnSuccessListener(aVoid -> {
+                                    if (listener != null) {
+                                        listener.onItemReceived(null);
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    if (listener != null) {
+                                        listener.onError(e);
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    if (listener != null) {
+                        listener.onError(e);
+                    }
+                });
     }
+
 
     @Override
     public void actualizar(EjercicioDTO Ejercicio) {
@@ -40,13 +68,35 @@ public class FirebaseEjercicioDAO implements BaseDAO<EjercicioDTO> {
     }
 
     @Override
-    public void eliminar(EjercicioDTO Ejercicio) {
+    public void eliminar(EjercicioDTO ejercicio) {
         db.collection("ejercicios")
-                .document()
-                .delete()
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Ejercicio eliminado exitosamente"))
-                .addOnFailureListener(e -> Log.w(TAG, "Error al eliminar el Ejercicio", e));
+                .whereEqualTo("nombre", ejercicio.getNombre()) // Filtrar por nombre del ejercicio
+                .whereEqualTo("grupoMuscular", ejercicio.getGrupoMuscular()) // Filtrar por grupo muscular
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                db.collection("ejercicios")
+                                        .document(document.getId())
+                                        .delete()
+                                        .addOnSuccessListener(aVoid -> {
+                                            System.out.println("Documento eliminado exitosamente: " + document.getId());
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            System.err.println("Error al eliminar documento: " + e.getMessage());
+                                        });
+                            }
+                        } else {
+                            System.out.println("No se encontraron documentos que coincidan con el contenido.");
+                        }
+                    } else {
+                        System.err.println("Error al realizar la consulta: " + task.getException().getMessage());
+                    }
+                });
     }
+
 
     @Override
     public void obtener(String id, OnItemReceivedListener<EjercicioDTO> listener) {
