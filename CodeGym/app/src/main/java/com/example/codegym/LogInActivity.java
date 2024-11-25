@@ -62,7 +62,7 @@ public class LogInActivity extends AppCompatActivity {
 
                 Intent intent;
                 if (esAdmin) {
-                    intent = new Intent(LogInActivity.this, CrudEjercicosActivity.class);
+                    intent = new Intent(LogInActivity.this, panelAdminActivity.class);
                 } else {
                     intent = new Intent(LogInActivity.this, WelcomeActivity.class);
                 }

@@ -12,13 +12,26 @@
       android:id="@+id/entrenadorTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
       android:text="Entrenador: M. Roshi"
       android:textColor="@color/negro"
       android:textSize="20sp"
       android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.497"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  <Button
+      android:id="@+id/volverButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="48dp"
+      android:backgroundTint="@color/azul"
+      android:text="@string/volver"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toEndOf="@+id/entrenadorTextView"
       app:layout_constraintTop_toTopOf="parent" />
 
   <androidx.recyclerview.widget.RecyclerView
@@ -29,7 +42,8 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/entrenadorTextView"
-      tools:listitem="@layout/activity_ejercicios_item" />
+      app:layout_constraintTop_toBottomOf="@+id/volverButton"
+      app:layout_constraintVertical_bias="0.0"
+      tools:listitem="@layout/activity_usuarios_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

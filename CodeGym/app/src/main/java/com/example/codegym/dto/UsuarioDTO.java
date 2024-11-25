@@ -1,6 +1,8 @@
 package com.example.codegym.dto;
 
-public class UsuarioDTO {
+import java.io.Serializable;
+
+public class UsuarioDTO implements Serializable {
     private String correo;
     private String contrasenia;
     private boolean esAdmin;

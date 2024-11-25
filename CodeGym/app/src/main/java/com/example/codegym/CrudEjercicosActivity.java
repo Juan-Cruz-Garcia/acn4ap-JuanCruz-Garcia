@@ -20,7 +20,7 @@ import java.util.List;
 
 public class CrudEjercicosActivity extends AppCompatActivity {
     private TextView entrenadorTextView;
-    private Button agregarEjercicioButton;
+    private Button agregarEjercicioButton,volverButton;
     private RecyclerView ejercicioRecyclerView;
     private AdminExerciseAdapter adminExerciseAdapter;
 
@@ -29,6 +29,7 @@ public class CrudEjercicosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crud_ejercicos);
 
+        volverButton = findViewById(R.id.volverButton);
         entrenadorTextView = findViewById(R.id.entrenadorTextView);
         agregarEjercicioButton = findViewById(R.id.agregarEjercicioButton);
         ejercicioRecyclerView = findViewById(R.id.ejercicioRecyclerView);
@@ -36,6 +37,11 @@ public class CrudEjercicosActivity extends AppCompatActivity {
 
         agregarEjercicioButton.setOnClickListener(view -> {
             Intent intent = new Intent(CrudEjercicosActivity.this, AgregarEjercicioActivity.class);
+            startActivity(intent);
+            finish();
+        });
+        volverButton.setOnClickListener(view -> {
+            Intent intent = new Intent(CrudEjercicosActivity.this, panelAdminActivity.class);
             startActivity(intent);
             finish();
         });

@@ -42,7 +42,7 @@
                 android:id="@+id/UsuariosAdminTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="admin"
+                android:text="acciones"
                 android:gravity="center"
                 android:textStyle="bold" />
         </TableRow>
@@ -89,7 +89,8 @@
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:contentDescription="Editar ejercicio"
-                    android:src="@drawable/ic_edit" />
+                    android:src="@drawable/ic_edit"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <!-- Botón para eliminar -->
                 <ImageButton
@@ -98,7 +99,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:contentDescription="Eliminar ejercicio"
-                    android:src="@drawable/ic_delete" />
+                    android:src="@drawable/ic_delete"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
         </TableRow>
