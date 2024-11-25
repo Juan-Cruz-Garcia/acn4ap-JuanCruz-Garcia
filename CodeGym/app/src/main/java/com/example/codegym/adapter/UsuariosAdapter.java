@@ -42,12 +42,12 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsersV
         if (usuario != null) {
             holder.UsersNameTextView.setText(usuario.getNombre());
             holder.UsersEmailTextView.setText(usuario.getCorreo());
-            holder.deleteButton.setOnClickListener(v -> {
+            holder.crudUsuariosDeleteButton.setOnClickListener(v -> {
                 if (deleteListener != null) {
                     deleteListener.onDelete(usuario, position);
                 }
             });
-            holder.editButton.setOnClickListener(v -> {
+            holder.crudUsuariosEditButton.setOnClickListener(v -> {
                 if (editListener != null) {
                     editListener.onEdit(usuario, position);
                 }
@@ -62,14 +62,14 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsersV
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {
         TextView UsersNameTextView,UsersEmailTextView;
-        Button editButton,deleteButton;
+        Button crudUsuariosEditButton,crudUsuariosDeleteButton;
 
         public UsersViewHolder(@NonNull View itemView) {
             super(itemView);
             UsersNameTextView = itemView.findViewById(R.id.UsersNameTextView);
             UsersEmailTextView = itemView.findViewById(R.id.UsersEmailTextView);
-            editButton = itemView.findViewById(R.id.editButton);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
+            crudUsuariosEditButton = itemView.findViewById(R.id.crudUsuariosEditButton);
+            crudUsuariosDeleteButton = itemView.findViewById(R.id.crudUsuariosDeleteButton);
         }
     }
 }
