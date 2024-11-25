@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/blanco">
 
     <!-- Título de la sección -->
-
-    <!-- Nombre del ejercicio -->
     <TextView
-        android:id="@+id/addExerciseTitle"
+        android:id="@+id/agregarTituloTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agregar Ejercicio"
@@ -20,36 +19,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Nombre del ejercicio -->
     <EditText
-        android:id="@+id/exerciseNameEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addExerciseTitle"
+        android:id="@+id/agregarNombreEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nombre del ejercicio"
-        android:textSize="16sp"/>
+        android:minHeight="48dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/agregarTituloTextView" />
 
     <!-- Músculo que trabaja -->
-    <EditText
-        android:id="@+id/muscleNameEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exerciseNameEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Músculo que trabaja"
-        android:textSize="16sp"/>
+
+    <!-- Tipo de ejercicio (desplegable) -->
 
     <!-- Botón de guardar ejercicio -->
-    <Button
-        android:id="@+id/saveExerciseButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/muscleNameEditText"
+    <EditText
+        android:id="@+id/agregarMusculosEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Guardar Ejercicio"
-        android:textSize="16sp"/>
+        android:layout_marginTop="12dp"
+        android:hint="Músculo que trabaja"
+        android:minHeight="48dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/agregarNombreEditText" />
 
+    <Spinner
+        android:id="@+id/agregarTipoSpinner"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/agregarMusculosEditText" />
+
+    <Button
+        android:id="@+id/agregarGuardarButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Guardar Ejercicio"
+        android:textSize="16sp"
+        android:backgroundTint="@color/verde"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/agregarTipoSpinner" />
+
+    <Button
+        android:id="@+id/agregarVolverButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="volver"
+        android:textSize="16sp"
+        android:backgroundTint="@color/azul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/agregarGuardarButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
