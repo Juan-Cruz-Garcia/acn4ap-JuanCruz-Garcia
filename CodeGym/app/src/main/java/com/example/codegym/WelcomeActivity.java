@@ -66,6 +66,7 @@ public class WelcomeActivity extends AppCompatActivity {
             actualizarTextoCronometro();
         });
     }
+
     private void iniciarCronometro() {
         timerHandler.post(new Runnable() {
             @Override

@@ -19,7 +19,7 @@ import com.example.codegym.listeners.OnMailVerificationListener;
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText registerNombre, registerEmail, registerPassword, registerConfirmPassword;
-    private Button registerButton,registerloginButton;
+    private Button registerButton, registerloginButton;
     private FirebaseUsuarioDAO usuarioDAO;
 
     @Override
@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
             startActivity(intent);
         });
-        registerButton.setOnClickListener(View->{
+        registerButton.setOnClickListener(View -> {
             registrarUsuario();
         });
 
@@ -54,13 +54,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (nombre.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Log.d("SignUpActivity", "Fallo: Uno o más campos están vacíos.");
-            Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!password.equals(confirmPassword)) {
             Log.d("SignUpActivity", "Fallo: Las contraseñas no coinciden.");
-            Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -78,16 +78,16 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onItemReceived(Void item) {
                     runOnUiThread(() -> {
-                    Log.d("SignUpActivity", "Usuario creado exitosamente.");
-                    Toast.makeText(SignUpActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                    Log.d("SignUpActivity", "Redirigiendo a LogInActivity...");
-                    startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+                        Log.d("SignUpActivity", "Usuario creado exitosamente.");
+                        Toast.makeText(SignUpActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                        Log.d("SignUpActivity", "Redirigiendo a LogInActivity...");
+                        startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
                     });
                 }
 
                 @Override
                 public void onError(Exception e) {
-                    Log.e("SignUpActivity", "Error al registrar usuario: "+ e.getMessage(),e);
+                    Log.e("SignUpActivity", "Error al registrar usuario: " + e.getMessage(), e);
                     runOnUiThread(() ->
                             Toast.makeText(SignUpActivity.this, "Error al registrar: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                     );
@@ -104,6 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
                 // Ejecuta la acción cuando el correo está disponible
                 runOnUiThread(onEmailAvailable);
             }
+
             @Override
             public void onMailAlreadyRegistered() {
                 // Notifica al usuario que el correo ya está registrado
@@ -111,6 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(SignUpActivity.this, "El correo ya está registrado", Toast.LENGTH_SHORT).show()
                 );
             }
+
             @Override
             public void onError(Exception e) {
                 // Notifica al usuario que hubo un error

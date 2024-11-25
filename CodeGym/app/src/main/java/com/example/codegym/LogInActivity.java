@@ -27,13 +27,13 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         usuarioDAO = new FirebaseUsuarioDAO();
-        loginButton=findViewById(R.id.loginButton);
-        loginRegisterButton=findViewById(R.id.loginRegisterButton);
-        loginEmail=findViewById(R.id.loginEmail);
-        loginPassword=findViewById(R.id.loginPassword);
+        loginButton = findViewById(R.id.loginButton);
+        loginRegisterButton = findViewById(R.id.loginRegisterButton);
+        loginEmail = findViewById(R.id.loginEmail);
+        loginPassword = findViewById(R.id.loginPassword);
 
-        loginRegisterButton.setOnClickListener(View ->{
-            Intent intent = new Intent(LogInActivity.this,SignUpActivity.class);
+        loginRegisterButton.setOnClickListener(View -> {
+            Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
 
