@@ -9,10 +9,10 @@
 
     <!-- Título de la sección -->
     <TextView
-        android:id="@+id/agregarTituloTextView"
+        android:id="@+id/modificarTituloTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar Ejercicio"
+        android:text="Modificar Usuario"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,23 +21,18 @@
 
     <!-- Nombre del ejercicio -->
     <EditText
-        android:id="@+id/agregarNombreEditText"
+        android:id="@+id/modificarNombreEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nombre del ejercicio"
+        android:hint="Nombre"
         android:minHeight="48dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/agregarTituloTextView" />
+        app:layout_constraintTop_toBottomOf="@id/modificarTituloTextView" />
 
-    <!-- Músculo que trabaja -->
-
-    <!-- Tipo de ejercicio (desplegable) -->
-
-    <!-- Botón de guardar ejercicio -->
     <EditText
-        android:id="@+id/agregarMusculosEditText"
+        android:id="@+id/modificarEmailEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -47,31 +42,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/agregarNombreEditText" />
+        app:layout_constraintTop_toBottomOf="@id/modificarNombreEditText" />
 
     <Spinner
-        android:id="@+id/agregarTipoSpinner"
+        android:id="@+id/modificarAdminSpinner"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/agregarMusculosEditText" />
+        app:layout_constraintTop_toBottomOf="@id/modificarEmailEditText" />
 
     <Button
-        android:id="@+id/agregarGuardarButton"
+        android:id="@+id/modificarGuardarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Guardar Ejercicio"
+        android:text="Guardar usuario"
         android:textSize="16sp"
         android:backgroundTint="@color/verde"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/agregarTipoSpinner" />
+        app:layout_constraintTop_toBottomOf="@id/modificarAdminSpinner" />
 
     <Button
-        android:id="@+id/agregarVolverButton"
+        android:id="@+id/modificarVolverButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -80,5 +75,5 @@
         android:backgroundTint="@color/azul"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/agregarGuardarButton" />
+        app:layout_constraintTop_toBottomOf="@id/modificarGuardarButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

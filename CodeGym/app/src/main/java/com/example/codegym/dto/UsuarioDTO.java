@@ -35,8 +35,12 @@ public class UsuarioDTO implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public boolean isEsAdmin() {
-        return esAdmin;
+    public String isEsAdmin() {
+        if (esAdmin){
+            return"administrador";
+        }else {
+            return "usuario";
+        }
     }
 
     public void setEsAdmin(boolean esAdmin) {

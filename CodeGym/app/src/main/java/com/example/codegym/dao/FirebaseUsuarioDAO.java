@@ -32,7 +32,7 @@ public class FirebaseUsuarioDAO implements BaseDAO<UsuarioDTO> {
                 .addOnSuccessListener(documentReference -> {
                     String usuarioId = documentReference.getId(); // Obtén el ID generado
                     Log.d("FirebaseUsuarioDAO", "Usuario creado con ID: " + usuarioId);
-                    crearRutinaVaciaParaUsuario(usuarioId, listener); // Llama al método auxiliar para crear la rutina
+                    crearRutinaVaciaParaUsuario(usuarioId, listener);
                 })
                 .addOnFailureListener(e -> {
                     Log.w("FirebaseUsuarioDAO", "Error al crear el usuario", e);

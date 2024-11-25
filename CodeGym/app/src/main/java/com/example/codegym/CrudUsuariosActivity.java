@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.codegym.adapter.UsuariosAdapter;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class CrudUsuariosActivity extends AppCompatActivity {
 private TextView entrenadorTextView;
+private Button volverButton;
 private RecyclerView usuariosRecyclerView;
 private UsuariosAdapter usuariosAdapter;
 
@@ -26,9 +28,16 @@ private UsuariosAdapter usuariosAdapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crud_usuarios);
 
+        volverButton = findViewById(R.id.volverButton);
         entrenadorTextView = findViewById(R.id.entrenadorTextView);
         usuariosRecyclerView = findViewById(R.id.usuariosRecyclerView);
         usuariosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        volverButton.setOnClickListener(view -> {
+            Intent intent = new Intent(CrudUsuariosActivity.this, panelAdminActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         obtenerUsuarios();
     }

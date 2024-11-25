@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,14 +43,14 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsersV
         if (usuario != null) {
             holder.UsersNameTextView.setText(usuario.getNombre());
             holder.UsersEmailTextView.setText(usuario.getCorreo());
-            holder.crudUsuariosDeleteButton.setOnClickListener(v -> {
-                if (deleteListener != null) {
-                    deleteListener.onDelete(usuario, position);
-                }
-            });
             holder.crudUsuariosEditButton.setOnClickListener(v -> {
                 if (editListener != null) {
                     editListener.onEdit(usuario, position);
+                }
+            });
+            holder.crudUsuariosDeleteButton.setOnClickListener(v -> {
+                if (deleteListener != null) {
+                    deleteListener.onDelete(usuario, position);
                 }
             });
         }
@@ -62,7 +63,7 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsersV
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {
         TextView UsersNameTextView,UsersEmailTextView;
-        Button crudUsuariosEditButton,crudUsuariosDeleteButton;
+        ImageButton crudUsuariosEditButton,crudUsuariosDeleteButton;
 
         public UsersViewHolder(@NonNull View itemView) {
             super(itemView);
