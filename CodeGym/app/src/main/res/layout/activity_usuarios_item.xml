@@ -21,7 +21,7 @@
         <TableRow android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/EjercicioNombreTextView"
+                android:id="@+id/UsusariosNombreTextView"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="16dp"
@@ -30,7 +30,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/MusculoNombreTextView"
+                android:id="@+id/UsuariosEmailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="16dp"
@@ -39,26 +39,19 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/crudAdminTextView"
+                android:id="@+id/UsuariosAdminTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="admin"
                 android:gravity="center"
                 android:textStyle="bold" />
-            <TextView
-            android:id="@+id/crudBorrarTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="admin"
-            android:gravity="center"
-            android:textStyle="bold" />
         </TableRow>
 
         <!-- Fila de ejercicio -->
         <TableRow>
 
             <TextView
-                android:id="@+id/ExerciseNameTextView"
+                android:id="@+id/UsersNameTextView"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -71,7 +64,7 @@
 
 
             <TextView
-                android:id="@+id/MuscleNameTextView"
+                android:id="@+id/UsersEmailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="none"
