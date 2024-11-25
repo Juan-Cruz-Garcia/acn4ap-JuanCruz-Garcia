@@ -11,18 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codegym.R;
 import com.example.codegym.dto.EjercicioDTO;
-import com.example.codegym.listeners.onDeleteListener;
+import com.example.codegym.listeners.OnDeleteListener;
 import com.example.codegym.listeners.OnEditListener;
 
 import java.util.List;
 
 public class AdminExerciseAdapter extends RecyclerView.Adapter<AdminExerciseAdapter.ExerciseViewHolder> {
     private List<EjercicioDTO> ejercicios;
-    private onDeleteListener deleteListener;
-    private OnEditListener editListener;
+    private OnDeleteListener<EjercicioDTO> deleteListener;
+    private OnEditListener<EjercicioDTO> editListener;
 
     // Constructor para inicializar los datos y los listeners
-    public AdminExerciseAdapter(List<EjercicioDTO> ejercicios, onDeleteListener deleteListener, OnEditListener editListener) {
+    public AdminExerciseAdapter(List<EjercicioDTO> ejercicios, OnDeleteListener deleteListener, OnEditListener editListener) {
         this.ejercicios = ejercicios;
         this.deleteListener = deleteListener; // Asignación del listener de eliminación
         this.editListener = editListener; // Asignación del listener de edición

@@ -52,14 +52,14 @@ public class CrudEjercicosActivity extends AppCompatActivity {
                     adminExerciseAdapter = new AdminExerciseAdapter(
                             ejercicios,
                             (ejercicio, position) -> { // Lógica para eliminar
-                                ejercicioDAO.eliminar(ejercicio);
+                                ejercicioDAO.eliminar((EjercicioDTO) ejercicio);
                                 ejercicios.remove(position);
                                 adminExerciseAdapter.notifyItemRemoved(position);
                                 adminExerciseAdapter.notifyItemRangeChanged(position, ejercicios.size());
                             },
                             (ejercicio, position) -> { // Lógica para editar
                                 Intent intent = new Intent(CrudEjercicosActivity.this, AgregarEjercicioActivity.class);
-                                intent.putExtra("ejercicio", ejercicio); // Enviar el ejercicio para edición
+                                intent.putExtra("ejercicio",(EjercicioDTO) ejercicio); // Enviar el ejercicio para edición
                                 startActivity(intent);
                             }
                     );
