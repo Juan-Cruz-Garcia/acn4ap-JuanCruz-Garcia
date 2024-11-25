@@ -32,7 +32,7 @@ public class AdminExerciseAdapter extends RecyclerView.Adapter<AdminExerciseAdap
     @Override
     public ExerciseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_crud_item, parent, false);
+                .inflate(R.layout.activity_ejercicios_item, parent, false);
         return new ExerciseViewHolder(view);
     }
     @Override

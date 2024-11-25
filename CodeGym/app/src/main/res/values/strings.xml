@@ -16,6 +16,9 @@
     <string name="btn_re_login">Ya tengo cuenta, Iniciar sesión</string>
     <string name="btn_start">Iniciar</string>
     <string name="btn_stop">Detener</string>
+    <string name="PanelUsuariosButton">Administrar Usuarios</string>
+    <string name="PanelEjerciciosButton">Adminsitrar Ejercicios</string>
+
 
 
     <!-- Textos para los checkbox -->
