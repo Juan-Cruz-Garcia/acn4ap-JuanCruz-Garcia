@@ -20,9 +20,9 @@
     <string name="PanelEjerciciosButton">Adminsitrar Ejercicios</string>
 
 
-
     <!-- Textos para los checkbox -->
     <string name="check_completed">Nivel Completado</string>
+    <string name="volver">volver</string>
 
 
 </resources>
